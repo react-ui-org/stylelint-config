@@ -1,0 +1,201 @@
+// Based on https://github.com/stylelint-scss/stylelint-config-standard-scss/blob/v17.0.0/__tests__/valid.scss
+// with the properties ordered, 4 spaces, `_` instead of `-` for private members, parentheses in
+// argumentless mixin calls, nesting limited to pseudo-classes and pseudo-elements, and no `!important`.
+
+@forward "something";
+@use "base";
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "sass:string";
+@import "something-else";
+
+// Multi-line double-slash comment
+//
+// with an empty line to structure it
+
+@function remove-where($list, $condition) {
+    $new-list: ();
+    $separator: list.separator($list);
+
+    @each $element in $list {
+        @if not meta.call($condition, $element) {
+            $new-list: list.append($new-list, $element, $separator: $separator);
+        }
+    }
+
+    @return $new-list;
+}
+
+@function _private-function() {
+    @return true;
+}
+
+@mixin corner-icon($name, $top-or-bottom, $left-or-right) {
+    .icon-#{$name} {
+        position: absolute;
+        #{$top-or-bottom}: 0;
+        #{$left-or-right}: 0;
+        background-image: url("/icons/#{$name}.svg");
+    }
+}
+
+@mixin triangle($size, $color, $direction) {
+    border-width: math.div($size, 2);
+    border-style: solid;
+    border-color: transparent;
+
+    @if $direction == up {
+        border-bottom-color: $color;
+    } @else if $direction == right {
+        border-left-color: $color;
+    } @else if $direction == down {
+        border-top-color: $color;
+    } @else if $direction == left {
+        border-right-color: $color;
+    } @else {
+        @error "Unknown direction #{$direction}.";
+    }
+}
+
+@mixin theme($theme: DarkGray) {
+    background: $theme;
+    box-shadow: 0 0 1px rgb($theme / 25%);
+}
+
+@mixin _private-mixin() {
+    border: 1px;
+}
+
+%message-shared {
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+%_private-placeholder {
+    border: 1px;
+}
+
+$_private-size: 10rem;
+$local-color: #333;
+
+$fonts: "Tahoma", "Helvetica Neue", "Helvetica", sans-serif;
+$theme-colors: (
+    "success": #28a745,
+    "warning": #ffc107,
+);
+
+:root {
+    --brand-red: hsl(5deg 10% 40%);
+}
+
+.selector-1,
+.selector-3[type="text"] {
+    top: calc(100% - 2rem);
+    color: base.$primary-color;
+    background: linear-gradient(#fff, rgb(0 0 0 / 80%));
+    transition:
+        opacity 0.2s,
+        transform 0.2s;
+
+    &:hover {
+        color: $local-color;
+    }
+
+    &::before {
+        content: "";
+    }
+}
+
+.selector-x { width: 10%; }
+.selector-y { width: 20%; }
+.selector-z { width: 30%; }
+
+.selector-a {
+    @include theme();
+}
+
+.selector-b {
+    @extend %message-shared;
+    @include theme($theme: DarkRed);
+}
+
+/* Single-line comment */
+
+@media (width >= 60em) {
+    .selector {
+        // Flush to parent comment
+        @include corner-icon("mail", top, left);
+
+        transform: translate(100%, 100%) scale(3);
+    }
+}
+
+@media (orientation: portrait), screen and (color) {
+    // Flush to parent double-slash comment
+    .selector-i + .selector-ii {
+        @include triangle(5px, black, right);
+
+        background: hsl(20deg 25% 33%);
+    }
+
+    .selector-j {
+        @function contains-helvetica($string) {
+            @return string.index($string, "Helvetica");
+        }
+
+        font-family: remove-where($fonts, meta.get-function("contains-helvetica"));
+    }
+}
+
+// Multi-line double-slash comment
+// comment
+@media
+    screen and (resolution >= 192dpi),
+    screen and (resolution >= 2dppx) {
+    .selector {
+        height: 10rem;
+        background-image:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                #fff 25px,
+                rgb(255 255 255 / 100%) 50px
+            );
+    }
+
+    /* Flush nested single line comment */
+    .selector::after {
+        content: "→";
+        background-image: url("x.svg");
+        background-color: map.get($theme-colors, "warning");
+    }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+$ratios:
+    5 4,
+    4 3,
+    3 2,
+    16 9;
+
+@mixin hardcode-total-height($base-height, $extra-height: 0px) {
+    height: calc($base-height + $extra-height);
+}
+
+.selector-c {
+    @include hardcode-total-height(10px);
+}
+
+@function add-numbers($number-a, $number-b: 0px) {
+    @return calc($number-a + $number-b);
+}
+
+.selector-d {
+    width: add-numbers(10px);
+}

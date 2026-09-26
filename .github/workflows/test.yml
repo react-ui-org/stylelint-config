@@ -1,0 +1,40 @@
+name: Test
+
+on: [ pull_request ]
+
+# The Node.js version is the active LTS, the same major as in `.nvmrc`. Node.js and
+# npm are pinned so that a broken npm release cannot break the build, see
+# <https://github.com/nodejs/node/issues/62425#issuecomment-4200715930>.
+# `NODE_VERSION` is quoted, YAML would read `24.20` as the number `24.2`.
+env:
+  NODE_VERSION: '24.20'
+  NPM_VERSION: 11.19.0
+
+jobs:
+  test:
+    name: Lint and test
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install npm@${{ env.NPM_VERSION }}
+        run: npm install -g npm@${{ env.NPM_VERSION }}
+
+      - name: Print Node.js and npm version
+        run: node --version && npm --version
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
