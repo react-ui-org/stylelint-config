@@ -1,0 +1,56 @@
+/*
+ * Based on https://github.com/stylelint/stylelint-config-standard/blob/40.0.0/__tests__/valid.css
+ * with the properties ordered, double quotes, 4 spaces, a class instead of the ID selector and
+ * classes in `:not()`, where `selector-no-qualifying-type` rejects type selectors since Stylelint 17.
+ */
+
+@import url("foo.css");
+@import url("bar.css");
+
+@custom-media --foo (min-width: 30em);
+
+/**
+ * Multi-line comment
+ */
+
+:root {
+    --brand-red: hsl(5deg 10% 40%);
+}
+
+/* Single-line comment */
+
+.class-foo:not(.class-bar, .class-baz) {
+    top: calc(100% - 2rem);
+    margin: 0;
+}
+
+/* Flush single line comment */
+@media (width >= 60em) {
+    .class-bar {
+        /* Flush to parent comment */
+        --offset: 0px;
+
+        left: calc(var(--offset) + 50%);
+        font-family: Helvetica, "Arial Black", sans-serif;
+        color: #fff;
+    }
+
+    @layer layer-foo.layer-bar {
+        a::after {
+            content: "→";
+            display: block;
+            background-image: url("x.svg");
+        }
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    /* Flush nested single line comment */
+    to {
+        opacity: 1;
+    }
+}

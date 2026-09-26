@@ -1,0 +1,5 @@
+# Default owners for code review
+*                           @react-ui-org/maintainers
+
+# Protect against unauthorized changes
+/.github/CODEOWNERS         @react-ui-org/maintainers

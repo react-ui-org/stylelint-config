@@ -1,0 +1,33 @@
+/*
+ * Based on https://github.com/stylelint/stylelint-config-standard/blob/40.0.0/__tests__/invalid.css
+ */
+
+@custom-media --FOO;
+
+:root {
+    --FOO: 1px;
+}
+
+@keyframes FOO {
+    /* ... */
+}
+
+.FOO {
+    /* ... */
+}
+
+#FOO {
+    /* ... */
+}
+
+@layer layer-foo {
+    /* ... */
+
+    @layer layer-BAR {
+        /* ... */
+    }
+}
+
+@layer layer-foo.layer-BAR {
+    /* ... */
+}

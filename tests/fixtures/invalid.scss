@@ -1,0 +1,35 @@
+// Based on https://github.com/stylelint-scss/stylelint-config-standard-scss/blob/v17.0.0/__tests__/invalid.scss
+
+$FOO: 1;
+$-private: 1;
+
+%FOO {
+    // Do nothing
+}
+
+@function -private() {
+    @return 1;
+}
+
+@mixin FOO {
+    // Do nothing
+}
+
+.foo {
+    @include bar;
+
+    .baz {
+        color: red;
+    }
+
+    &-suffix {
+        color: red;
+    }
+}
+
+@if $foo {
+    // Do nothing
+}
+@else {
+    // Do nothing
+}
