@@ -11,6 +11,21 @@ opinionated order of properties and the stylistic rules of
 
 Stylelint 17 only.
 
+## Sponsors
+
+<p>
+    <br />
+    <a href="https://www.racom.eu">
+      <img src="public/racom.svg" width="190" height="30" alt="RACOM" />
+    </a>
+    <br />
+    <br />
+</p>
+
+> Development of this project is largely supported by
+> [RACOM]—one of the leading global players in wireless
+> Critical Infrastructure.
+
 ## Installation
 
 ```sh
@@ -68,3 +83,5 @@ change. All contributions must pass linting and tests before being merged.
 The release process is fully automated. If you plan to release a new version,
 please follow the [Releasing Guide](./src/docs/releasing.md), which explains
 the version bump and how the changelog is assembled.
+
+[RACOM]: https://www.racom.eu
