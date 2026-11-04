@@ -2,13 +2,12 @@ name: Test
 
 on: [ pull_request ]
 
-# The Node.js version is the active LTS, the same major as in `.nvmrc`. Node.js and
+# The Node.js version is the active LTS, the same version as in `.nvmrc`. Node.js and
 # npm are pinned so that a broken npm release cannot break the build, see
 # <https://github.com/nodejs/node/issues/62425#issuecomment-4200715930>.
-# `NODE_VERSION` is quoted, YAML would read `24.20` as the number `24.2`.
 env:
-  NODE_VERSION: '24.20'
-  NPM_VERSION: 11.19.0
+  NODE_VERSION: 26.13.0
+  NPM_VERSION: 11.20.0
 
 jobs:
   test:

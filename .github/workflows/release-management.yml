@@ -10,8 +10,8 @@ permissions:
 
 # Kept in sync with test.yml.
 env:
-  NODE_VERSION: '24.20'
-  NPM_VERSION: 11.19.0
+  NODE_VERSION: 26.13.0
+  NPM_VERSION: 11.20.0
 
 jobs:
   test:

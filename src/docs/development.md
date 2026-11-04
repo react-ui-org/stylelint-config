@@ -1,8 +1,8 @@
 # Development
 
-No build step, `src` is published as it is. The package supports Node 22.11 and
-newer; development uses the versions in `devEngines` and
-[`.nvmrc`](../../.nvmrc).
+No build step, `src` is published as it is. The package supports Node 24.22.1 and
+newer, and Node 26.13.0 and newer; development uses the versions in `devEngines`
+and [`.nvmrc`](../../.nvmrc).
 
 | Command                     | Purpose                                             |
 |-----------------------------|-----------------------------------------------------|
