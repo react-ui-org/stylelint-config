@@ -53,12 +53,12 @@
     }
   },
   "scripts": {
-    "eslint": "eslint .",
-    "eslint:fix": "eslint . --fix",
     "inspect": "stylelint --config inspect.config.mjs --print-config",
-    "lint": "npm run eslint && npm run markdownlint",
-    "markdownlint": "markdownlint-cli2 \"README.md\" \"src/**/*.md\"",
-    "test": "node --test \"tests/**/*.test.mjs\""
+    "lint": "npm run lint:eslint && npm run lint:markdownlint",
+    "lint:eslint": "eslint",
+    "lint:eslint:fix": "eslint --fix",
+    "lint:markdownlint": "markdownlint-cli2",
+    "test:node": "node --test \"tests/**/*.test.mjs\""
   },
   "dependencies": {
     "@stylistic/stylelint-config": "^5.0.0",
