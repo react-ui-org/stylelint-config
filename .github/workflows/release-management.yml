@@ -40,7 +40,7 @@ jobs:
         run: npm run lint
 
       - name: Test
-        run: npm test
+        run: npm run test:node
 
       - name: Check package.json for version change
         id: check_package_version
