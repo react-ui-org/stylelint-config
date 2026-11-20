@@ -6,14 +6,14 @@ and [`.nvmrc`](../../.nvmrc).
 
 | Command                     | Purpose                                             |
 |-----------------------------|-----------------------------------------------------|
-| `npm run eslint`            | Lint the package with `@react-ui-org/eslint-config` |
-| `npm run eslint:fix`        | The same with autofix                               |
-| `npm run markdownlint`      | Lint the documentation                              |
-| `npm run lint`              | Both of the above                                   |
-| `npm test`                  | Run the tests                                       |
+| `npm run lint:eslint`       | Lint the package with `@react-ui-org/eslint-config` |
+| `npm run lint:eslint:fix`   | The same with autofix                               |
+| `npm run lint:markdownlint` | Lint the Markdown files                             |
+| `npm run lint`              | Both linters                                        |
+| `npm run test:node`         | Run the tests                                       |
 | `npm run inspect -- <file>` | Print the whole exported config for a file          |
 
-CI runs `npm run lint` and `npm test`.
+CI runs `npm run lint` and `npm run test:node`.
 
 ## Layout
 

@@ -8,7 +8,7 @@ permissions:
   contents: read
   id-token: write
 
-# Kept in sync with test.yml.
+# Kept in sync with lint.yml.
 env:
   NODE_VERSION: 26.13.1
   NPM_VERSION: 11.20.0
@@ -40,7 +40,7 @@ jobs:
         run: npm run lint
 
       - name: Test
-        run: npm test
+        run: npm run test:node
 
       - name: Check package.json for version change
         id: check_package_version

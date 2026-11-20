@@ -14,3 +14,12 @@ trim_trailing_whitespace = true
 
 [*.{css,scss,md}]
 indent_size = 4
+
+[*.{cpp,hpp}]
+indent_size = 4
+
+[*.py]
+indent_size = 4
+
+[Makefile]
+indent_style = tab
