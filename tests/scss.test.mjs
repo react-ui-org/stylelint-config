@@ -7,6 +7,7 @@ import {
   assertHealthyConfig,
   compositions,
   findings,
+  lintCode,
   lintFixture,
 } from './helpers/lint.mjs';
 
@@ -38,5 +39,19 @@ describe('SCSS config', () => {
       result.warnings.find(({ rule }) => rule === 'scss/dollar-variable-pattern').text,
       'Expected variable name "FOO" to be kebab-case, prefixed with "_" if private (scss/dollar-variable-pattern)',
     );
+  });
+
+  /*
+   * The SCSS config parses every stylesheet with `postcss-scss`, which only the stylistic rules
+   * under `@stylistic/scss/` read, a snippet without a file name included.
+   */
+  it('includes the stylistic rules for SCSS in every stylesheet', async () => {
+    const result = await lintCode('a::after {\n  content: \'a\';\n}\n', compositions.scss);
+
+    assertHealthyConfig(result);
+    assert.deepEqual(findings(result), [
+      [2, '@stylistic/scss/indentation'],
+      [2, '@stylistic/scss/string-quotes'],
+    ]);
   });
 });
