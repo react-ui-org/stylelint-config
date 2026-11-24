@@ -10,7 +10,7 @@ export default {
    * `scss/at-if-closing-brace-*` and `scss/at-else-closing-brace-*` rules, which keep `} @else {`
    * on one line. The stylistic rule would require a newline there.
    */
-  '@stylistic/block-closing-brace-newline-after': [
+  '@stylistic/scss/block-closing-brace-newline-after': [
     'always',
     {
       ignoreAtRules: ['if', 'else'],

@@ -9,7 +9,7 @@ and adds stricter rules to keep the specificity low and the nesting shallow, an
 opinionated order of properties and the stylistic rules of
 [@stylistic/stylelint-config](https://github.com/stylelint-stylistic/stylelint-config).
 
-Stylelint 17 only.
+Stylelint 18 only.
 
 ## Sponsors
 

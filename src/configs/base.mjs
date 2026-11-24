@@ -1,6 +1,6 @@
 import baseRules from '../rules/base.mjs';
 import orderRules from '../rules/order.mjs';
-import stylisticRules from '../rules/stylistic.mjs';
+import stylisticRules, { scssAdjustments } from '../rules/stylistic.mjs';
 
 /*
  * The config for every stylesheet: `stylelint-config-standard` with stricter rules of our own,
@@ -13,6 +13,17 @@ export default {
   extends: [
     'stylelint-config-standard',
     '@stylistic/stylelint-config',
+  ],
+  /*
+   * `@stylistic/stylelint-config` sets its rules for `*.scss` files once more under
+   * `@stylistic/scss/` in an override, which reads them once they are parsed as SCSS. The
+   * adjustments are applied there as well, the SCSS config then sets them for every stylesheet.
+   */
+  overrides: [
+    {
+      files: ['**/*.scss'],
+      rules: scssAdjustments,
+    },
   ],
   plugins: [
     'stylelint-order',

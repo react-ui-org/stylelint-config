@@ -73,13 +73,19 @@ Stylelint 16 dropped its stylistic rules, the base config brings them back with
 4 spaces, double quotes, lines up to 120 characters and consistent whitespace
 around braces, colons, commas and operators. They are all autofixable.
 
+The rules are named by the syntax they read. A CSS stylesheet is checked by
+`@stylistic/indentation`, a stylesheet parsed as SCSS by
+`@stylistic/scss/indentation`. The SCSS config parses every stylesheet as SCSS,
+a `.css` file included, so a disable comment in an SCSS project names the rule
+with `@stylistic/scss/`.
+
 ### Disable comments
 
 A disable comment that does nothing is reported, the same as ESLint reports
 unused disable directives: either there is no problem to disable, or the rule is
 not enabled. It catches comments left behind by a fixed problem or a renamed
 rule, like `max-line-length`, which is `@stylistic/max-line-length` since
-Stylelint 16.
+Stylelint 16 and `@stylistic/scss/max-line-length` in SCSS since Stylelint 18.
 
 ### Selectors inside `:is()`, `:not()` and `:has()`
 
